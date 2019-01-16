@@ -16,6 +16,7 @@ class Tweet extends Component {
     // todo: Redirect to parent Tweet.
   }
   render() {
+    // dieses props kommt aus mapStateToProps() und ist ein Objekt, das von formatTweet() zurückgegeben wird
     const { tweet } = this.props
 
     if (tweet === null) {
@@ -59,11 +60,15 @@ class Tweet extends Component {
     )
   }
 }
+// function mapStateToProps (state, ownProps)
+// state: der komplette store (Objekt)
+// ownProps: props "ganz normal" von außen
+// function mapStateToProps ({authedUser, users, tweets}, { id }): destructured
 
 function mapStateToProps ({authedUser, users, tweets}, { id }) {
   const tweet = tweets[id]
   const parentTweet = tweet ? tweets[tweet.replyingTo] : null
-
+// gibt ein Objekt zurück
   return {
     authedUser,
     tweet: tweet
